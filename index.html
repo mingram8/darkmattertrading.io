@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dark Matter Trading</title>
+<meta name="description" content="Dark Matter Trading is a proprietary trading and market-infrastructure research firm. We trade our own capital.">
+<meta name="theme-color" content="#06050c">
+<meta property="og:title" content="Dark Matter Trading">
+<meta property="og:description" content="Proprietary trading and market-infrastructure research.">
+<meta property="og:image" content="https://darkmattertrading.io/assets/icon-512.png">
+<meta property="og:url" content="https://darkmattertrading.io/">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --void:#06050c;      /* page ground: near-black with a violet bias */
+    --deep:#0d0b1a;      /* raised panels */
+    --line:#262241;      /* hairlines */
+    --ink:#e9e7f5;       /* body text */
+    --mute:#9a96b8;      /* secondary text */
+    --violet:#a855f7;    /* logo purple */
+    --cyan:#22d3ee;      /* logo cyan */
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;margin:0}
+  html{background:var(--void);scroll-behavior:smooth}
+  body{background:var(--void);color:var(--ink);font:400 17px/1.65 Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;
+       -webkit-font-smoothing:antialiased;padding-inline:max(20px,env(safe-area-inset-left));overflow-x:hidden}
+  #sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+
+  /* top bar */
+  .bar{display:flex;align-items:center;justify-content:space-between;padding-block:22px}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--ink);font:400 13px/1 Michroma,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+  .brand img{width:44px;height:auto}
+  .bar nav{display:flex;gap:26px;font:500 14px/1 Manrope,sans-serif}
+  .bar nav a{color:var(--mute)}
+  .bar nav a:hover{color:var(--ink);text-decoration:none}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:32px;padding-block:56px 72px}
+  .eyebrow{font:500 12px/1 "JetBrains Mono",monospace;color:var(--cyan);letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}
+  h1{font:400 clamp(34px,5.4vw,62px)/1.08 Michroma,sans-serif;letter-spacing:.01em;text-wrap:balance}
+  h1 .grad{background:linear-gradient(92deg,var(--violet),#6d7cf7 45%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{margin-top:24px;max-width:46ch;color:var(--mute);font-size:19px}
+  .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font:600 15px/1 Manrope,sans-serif;border:1px solid var(--line);color:var(--ink);background:rgba(13,11,26,.6)}
+  .btn.primary{border-color:transparent;background:linear-gradient(92deg,var(--violet),var(--cyan));color:#07060e}
+  .btn:hover{text-decoration:none;filter:brightness(1.08)}
+  .orbit{position:relative;max-width:540px;width:100%;justify-self:center}
+  .orbit img{width:100%;height:100%;object-fit:contain;animation:float 9s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+
+  /* sections */
+  section{padding-block:72px;border-top:1px solid var(--line)}
+  .kicker{font:500 12px/1 "JetBrains Mono",monospace;color:var(--violet);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px}
+  h2{font:400 clamp(24px,3vw,34px)/1.2 Michroma,sans-serif;text-wrap:balance;max-width:26ch}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  .card{background:linear-gradient(180deg,rgba(23,19,46,.75),rgba(13,11,26,.75));border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card h3{font:600 18px/1.3 Manrope,sans-serif;margin-bottom:10px}
+  .card p{color:var(--mute);font-size:15.5px}
+  .card .tag{font:500 11px/1 "JetBrains Mono",monospace;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:14px}
+
+  .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 48px;margin-top:36px}
+  .principles div{padding-left:18px;border-left:2px solid;border-image:linear-gradient(var(--violet),var(--cyan)) 1}
+  .principles h3{font:600 17px/1.3 Manrope,sans-serif;margin-bottom:6px}
+  .principles p{color:var(--mute);font-size:15.5px}
+
+  .join{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start}
+  .join p{color:var(--mute);margin-top:18px;max-width:58ch}
+  .contact{background:rgba(13,11,26,.7);border:1px solid var(--line);border-radius:18px;padding:26px;font:400 15px/1.9 "JetBrains Mono",monospace}
+  .contact span{display:block;color:var(--mute);font:500 11px/1 "JetBrains Mono",monospace;letter-spacing:.18em;text-transform:uppercase;margin:4px 0 6px}
+  .contact span:not(:first-child){margin-top:18px}
+
+  footer{border-top:1px solid var(--line);padding-block:30px 40px;color:var(--mute);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+  footer .fine{max-width:70ch}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;padding-top:24px}
+    .orbit{max-width:360px;order:-1}
+    .grid{grid-template-columns:1fr}
+    .principles{grid-template-columns:1fr}
+    .join{grid-template-columns:1fr}
+    .bar nav{gap:16px}
+  }
+  @media (max-width:480px){ .bar nav a:not(:last-child){display:none} }
+  @media (prefers-reduced-motion:reduce){ .orbit img{animation:none} html{scroll-behavior:auto} }
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="#top" aria-label="Dark Matter Trading home"><img src="assets/mark.webp" alt="">Dark Matter</a>
+    <nav aria-label="Main">
+      <a href="#work">What we do</a>
+      <a href="#principles">How we work</a>
+      <a href="#join">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Proprietary trading · Market infrastructure</p>
+        <h1>Edge lives where <span class="grad">no one is looking.</span></h1>
+        <p class="lede">Dark Matter Trading is a small proprietary trading and research firm. We build our own market-data infrastructure, test ideas the slow and honest way, and trade only our own capital.</p>
+        <div class="cta">
+          <a class="btn primary" href="#join">Get in touch</a>
+          <a class="btn" href="#work">What we do</a>
+        </div>
+      </div>
+      <div class="orbit"><img src="assets/mark.webp" alt="Dark Matter Trading emblem: a D wrapped in orbiting rings around a galaxy"></div>
+    </div>
+
+    <section id="work">
+      <p class="kicker">What we do</p>
+      <h2>Infrastructure first. Then research. Then risk.</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">01 · Data</span>
+          <h3>Market-data infrastructure</h3>
+          <p>Low-latency collectors with precise timestamps that record full order books and trade tape across venues, so research runs on what actually happened, not on summaries.</p>
+        </article>
+        <article class="card">
+          <span class="tag">02 · Research</span>
+          <h3>Systematic research</h3>
+          <p>Every idea is written down and judged against criteria set before the test. Most don't survive, and the ones that do get gated to the conditions where they work.</p>
+        </article>
+        <article class="card">
+          <span class="tag">03 · Trading</span>
+          <h3>Proprietary trading</h3>
+          <p>We trade our own capital in digital-asset markets with automated systems, hard risk rules and stops that are tested to survive failure.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="principles">
+      <p class="kicker">How we work</p>
+      <h2>Survive first. Earn second.</h2>
+      <div class="principles">
+        <div><h3>Failure-first design</h3><p>Every system is built by asking how it breaks. Safeguards live where nobody, including us, can quietly switch them off.</p></div>
+        <div><h3>Measured, not guessed</h3><p>Claims need data, and verdicts need pre-registered tests. A good story isn't evidence.</p></div>
+        <div><h3>Gate it, don't kill it</h3><p>When a working idea blows up, we look for what made that situation different before we throw the idea out.</p></div>
+        <div><h3>Small, senior, and teaching</h3><p>A lean team that trains the next generation through real internships on real systems.</p></div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="join">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>Builders, researchers, and the curious.</h2>
+          <p>We run a small number of academic research internships each term, working on live infrastructure under direct mentorship. If you build systems and like hard problems, write to us. For anything else, reach out directly.</p>
+        </div>
+        <div class="contact">
+          <span>General</span>
+          <a href="mailto:mitchell.ingram@darkmattertrading.io">mitchell.ingram@darkmattertrading.io</a>
+          <span>Research &amp; internships</span>
+          <a href="mailto:akio.pinedo@darkmattertrading.io">akio.pinedo@darkmattertrading.io</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="yr">2026</span> Dark Matter Trading LLC</div>
+    <div class="fine">Dark Matter Trading trades only its own capital. We do not manage outside money, accept investors, or provide investment advice. Nothing on this site is an offer or solicitation.</div>
+  </footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+// Starfield: slow drift, a few violet/cyan stars, respects reduced motion
+(function(){
+  const c = document.getElementById('sky'), x = c.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, stars = [];
+  function size(){
+    const d = Math.min(devicePixelRatio || 1, 2);
+    w = c.width = innerWidth * d; h = c.height = innerHeight * d;
+    c.style.width = innerWidth + 'px'; c.style.height = innerHeight + 'px';
+    const n = Math.round(innerWidth * innerHeight / 5200);
+    stars = Array.from({length:n}, () => ({
+      x: Math.random()*w, y: Math.random()*h, r: (Math.random()*1.2+0.2)*d,
+      a: Math.random()*0.6+0.2, s: (Math.random()*0.08+0.02)*d,
+      c: Math.random() < 0.08 ? (Math.random()<0.5 ? '168,85,247' : '34,211,238') : '233,231,245'
+    }));
+  }
+  function draw(t){
+    x.clearRect(0,0,w,h);
+    for (const s of stars){
+      const tw = reduce ? s.a : s.a * (0.65 + 0.35*Math.sin(t/900 + s.x));
+      x.fillStyle = `rgba(${s.c},${tw})`;
+      x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.283); x.fill();
+      if (!reduce){ s.y -= s.s; if (s.y < -2) { s.y = h + 2; s.x = Math.random()*w; } }
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  size(); addEventListener('resize', size); requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
